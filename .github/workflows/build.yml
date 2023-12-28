@@ -1,0 +1,27 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Update/upgrade image
+      run: |
+        sudo apt-get update
+        sudo apt-get upgrade
+    - name: Install gcc
+      run: |
+        sudo apt install build-essential
+    - name: Install libcurl and json-c
+      run: |
+        sudo apt-get install libcurl4-openssl-dev libjson-c-dev
+    - name: Run make
+      run: |
+        make clean
+        make
+    - name: Run ipstat
+      run: |
+        build/ipstat 1.1.1.1
+        build/ipstat -h github.com
