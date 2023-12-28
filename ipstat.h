@@ -85,7 +85,7 @@ static const char *const ipstat_error_messages[] = {
     [PARSE_ERROR_JSON_MISSING_IP] = "JSON response is missing expected key \"ip\"",
     [PARSE_ERROR_MISSING_OCTET] = "The provided IP address string is missing an octet",
     [PARSE_ERROR_TOO_MANY_OCTETS] = "The provided IP address string contains too many octets",
-    [PARSE_ERROR_INVALID_JSON] = "Unable to parse JSON data in HTTP response"
+    [PARSE_ERROR_INVALID_JSON] = "Unable to parse JSON data in HTTP response",
 };
 
 struct response_buffer {
@@ -121,7 +121,7 @@ static const return_code const ipstat_error_return_codes[] = {
     [PARSE_ERROR_JSON_MISSING_IP] = RETURN_CODE_IPSTAT_PARSE_ERROR,
     [PARSE_ERROR_MISSING_OCTET] = RETURN_CODE_PARSE_ERROR,
     [PARSE_ERROR_TOO_MANY_OCTETS] = RETURN_CODE_PARSE_ERROR,
-    [PARSE_ERROR_INVALID_JSON] = RETURN_CODE_IPSTAT_PARSE_ERROR
+    [PARSE_ERROR_INVALID_JSON] = RETURN_CODE_IPSTAT_PARSE_ERROR,
 };
 
 _Noreturn void fatal_error(const char *, return_code);

@@ -1,11 +1,12 @@
 CC=gcc
-CFLAGS=-g -lcurl -ljson-c
+CFLAGS=-g
+CLIBS=-lcurl -ljson-c
 
 INSTALL_BIN=/usr/local/bin
 
 all: ipstat.c
 	mkdir -p build
-	$(CC) $(CFLAGS) $< -o build/ipstat
+	$(CC) -o build/ipstat $(CFLAGS) $< $(CLIBS)
 
 clean:
 	rm -rf build

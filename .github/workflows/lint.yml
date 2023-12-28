@@ -1,0 +1,22 @@
+name: Lint
+
+on: [push]
+
+jobs:
+  clang-format:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Update/upgrade image
+      run: |
+        sudo apt-get -y update
+        sudo apt-get -y upgrade
+    - name: Install clang-format v15
+      run: |
+        sudo apt-get install -y clang-format-15
+    # 'set -e' makes it so the shell can exit on any clang-format errors and report an
+    # error of its own. we run against all *.cpp and *.hpp files in the ./ directory
+    - name: Run clang-format
+      run: |
+        set -e
+        clang-format-15 -style=file:./.github/.clang-format --dry-run -Werror $(find ./ -type f \( -iname \*.c -o -iname \*.h \))
